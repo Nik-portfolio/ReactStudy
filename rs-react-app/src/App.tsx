@@ -28,11 +28,11 @@ class App extends Component {
     this.setState({
       isLoading: false,
       results: await getByUrl(
-        'https://swapi.dev/api/people/',
+        'https://swapi.dev/ai/people/',
         this.state.searchTerm
       ),
     });
-    console.log(await getByUrl('https://swapi.dev/api/people/', ''));
+    console.log(this.state.results);
   }
 
   handleSearch = async (term: string) => {
