@@ -20,7 +20,7 @@ interface AppState {
 }
 class App extends Component {
   public state: AppState = {
-    searchTerm: '',
+    searchTerm: localStorage.getItem('searchTerm') || '',
     isLoading: true,
     results: [],
   };
@@ -33,10 +33,10 @@ class App extends Component {
       ),
     });
     console.log(await getByUrl('https://swapi.dev/api/people/', ''));
-    // const response = await fetch(`https://swapi.dev/api/people/?search=${st}`)
   }
 
   handleSearch = async (term: string) => {
+    localStorage.setItem('searchTerm', term);
     this.setState({
       isLoading: true,
     });
@@ -45,7 +45,6 @@ class App extends Component {
       searchTerm: term,
       results: await getByUrl('https://swapi.dev/api/people/', term),
     });
-    console.log(this.state.searchTerm);
   };
 
   render() {
