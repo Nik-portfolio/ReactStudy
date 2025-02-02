@@ -1,16 +1,18 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
+import { Component } from 'react';
 import './App.css';
+import ErrorBoundary from './components/ErrorBoundary';
+import SearchSection from './components/SearcSection';
 
-function App() {
-  const [count, setCount] = useState(0);
-
-  return (
-    <>
-      <h1>is husky?</h1>
-    </>
-  );
+class App extends Component {
+  render() {
+    return (
+      <>
+        <ErrorBoundary>
+          <SearchSection searchTerm="" onSearch={(e) => console.log(e)} />
+        </ErrorBoundary>
+      </>
+    );
+  }
 }
 
 export default App;
