@@ -6,13 +6,6 @@ import ResultsSection from './components/Results';
 import IResult from './interfaces/IResult';
 import getByUrl from './utils/getByUrl';
 
-//  const response = await fetch(`https://swapi.dev/api/people/?search=${term}`)
-//     if (!response.ok) {
-//       throw new Error("Failed to fetch results")
-//     }
-//     const data = await response.json()
-//     setResults(data.results)
-
 interface AppState {
   searchTerm: string;
   isLoading: boolean;
@@ -28,7 +21,7 @@ class App extends Component {
     this.setState({
       isLoading: false,
       results: await getByUrl(
-        'https://swapi.dev/ai/people/',
+        'https://swapi.dev/api/people/',
         this.state.searchTerm
       ),
     });
