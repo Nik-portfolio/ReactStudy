@@ -1,26 +1,25 @@
 import { Component } from 'react';
-
-interface Result {
-  name: string;
-  birthYear: string;
-}
+import IResult from '../interfaces/IResult';
 
 interface ResultSectionProps {
-  results: Result[];
+  results: IResult[] | [];
   isLoading: boolean;
 }
 
 class ResultsSection extends Component<ResultSectionProps> {
   render() {
     if (this.props.isLoading) {
-      return <h1>Is Loading</h1>;
+      return <h1>Is Loading...</h1>;
+    }
+    if (this.props.results.length == 0) {
+      return <h1>404 Nothing is found</h1>;
     }
     return (
       <div className="resultsWrapper">
         {this.props.results.map((result, index) => (
           <div key={index} className="resultItem">
             <h2 className="resultItemName">{result.name}</h2>
-            <p>Birth Year: {result.birthYear}</p>
+            <p>Birth Year: {result.birth_year}</p>
           </div>
         ))}
       </div>

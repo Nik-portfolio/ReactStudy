@@ -22,8 +22,9 @@ class SearchSection extends Component<SearchSectionProps> {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} className="mb-8">
+      <form onSubmit={this.handleSubmit} className="form">
         <input
+          className="input"
           type="text"
           value={this.state.inputValue}
           onChange={(e) => this.setState({ inputValue: e.target.value })}
