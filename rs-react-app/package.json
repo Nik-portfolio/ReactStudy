@@ -1,6 +1,7 @@
 {
   "name": "rs-react-app",
   "private": true,
+  "homepage": "https://Nik-portfolio.github.io/ReactStudy/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -9,7 +10,9 @@
     "preview": "vite preview",
     "fix": "prettier --write .",
     "prepare": "husky",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -27,6 +30,7 @@
     "eslint-plugin-react-compiler": "^19.0.0-beta-27714ef-20250124",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.16",
+    "gh-pages": "^6.3.0",
     "globals": "^15.14.0",
     "prettier": "3.4.2",
     "typescript": "~5.6.2",
