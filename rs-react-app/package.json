@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "fix": "prettier --write .",
-    "prepare": "husky"
+    "prepare": "npn run lint"
   },
   "dependencies": {
     "react": "^18.3.1",
