@@ -10,7 +10,6 @@ interface SearchSectionState {
   inputValue: string;
 }
 class SearchSection extends Component<SearchSectionProps> {
-  // const [inputValue, setInputValue] = useState(searchTerm)
   public state: SearchSectionState = {
     inputValue: this.props.searchTerm,
   };
