@@ -6,10 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
     "preview": "vite preview",
     "fix": "prettier --write .",
-    "prepare": "husky ug+x .husky/*"
+    "prepare": "husky",
+       "lint": "eslint ."
   },
   "dependencies": {
     "react": "^18.3.1",
