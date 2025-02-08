@@ -1,19 +1,17 @@
-import { Component, ReactNode, MouseEventHandler } from 'react';
+import { ReactNode, MouseEventHandler } from 'react';
 
 interface ButtonProps {
   children?: ReactNode;
   handleClick?: MouseEventHandler<HTMLButtonElement>;
-  style?: object;
+  className?: string;
 }
 
-class Button extends Component<ButtonProps> {
-  render() {
-    return (
-      <button onClick={this.props.handleClick} style={this.props.style}>
-        {this.props.children}
-      </button>
-    );
-  }
+function Button(props: ButtonProps) {
+  return (
+    <button onClick={props.handleClick} className={`button-${props.className}`}>
+      {props.children}
+    </button>
+  );
 }
 
 export default Button;

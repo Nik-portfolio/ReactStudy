@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import Button from './Button';
 
 interface SearchSectionProps {
@@ -6,33 +6,23 @@ interface SearchSectionProps {
   onSearch: (term: string) => void;
 }
 
-interface SearchSectionState {
-  inputValue: string;
-}
-class SearchSection extends Component<SearchSectionProps> {
-  public state: SearchSectionState = {
-    inputValue: this.props.searchTerm,
-  };
-
-  handleSubmit = (e: React.FormEvent) => {
+function SearchSection(props: SearchSectionProps) {
+  const [inputValue, setInputValue] = useState<string>(props.searchTerm);
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    this.props.onSearch(this.state.inputValue);
-  };
-
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit} className="form">
-        <input
-          className="input"
-          type="text"
-          value={this.state.inputValue}
-          onChange={(e) => this.setState({ inputValue: e.target.value })}
-          placeholder="Search Star Wars characters"
-        />
-        <Button>Search</Button>
-      </form>
-    );
+    props.onSearch(inputValue);
   }
+  return (
+    <form onSubmit={handleSubmit} className="search-form">
+      <input
+        className="input"
+        type="text"
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+        placeholder="Search Star Wars characters"
+      />
+      <Button className="search">Search</Button>
+    </form>
+  );
 }
-
 export default SearchSection;

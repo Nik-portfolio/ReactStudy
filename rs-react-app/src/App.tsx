@@ -1,61 +1,44 @@
-import { Component } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import ErrorBoundary from './components/ErrorBoundary';
 import SearchSection from './components/SearchSection';
 import ResultsSection from './components/Results';
-import IResult from './interfaces/IResult';
 import getByUrl from './utils/getByUrl';
 
-interface AppState {
-  searchTerm: string;
-  isLoading: boolean;
-  results: IResult[];
-}
-class App extends Component {
-  public state: AppState = {
-    searchTerm: localStorage.getItem('searchTerm') || '',
-    isLoading: true,
-    results: [],
-  };
-  async componentDidMount() {
-    this.setState({
-      isLoading: false,
-      results: await getByUrl(
-        'https://swapi.dev/api/people/',
-        this.state.searchTerm
-      ),
-    });
-    console.log(this.state.results);
-  }
+function App() {
+  const [searchTerm, setSearchTerm] = useState(
+    localStorage.getItem('searchTerm') || ''
+  );
+  const [loadingStatus, setLoadingStatus] = useState(false);
+  const [serverResponse, setServerResponse] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        localStorage.setItem('searchTerm', searchTerm);
+        setLoadingStatus(true);
+        await setServerResponse(
+          await getByUrl('https://swapi.dev/api/people/', searchTerm)
+        );
+        setLoadingStatus(false);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    fetchData();
+    return;
+  }, [searchTerm]);
 
-  handleSearch = async (term: string) => {
-    localStorage.setItem('searchTerm', term);
-    this.setState({
-      isLoading: true,
-    });
-    this.setState({
-      isLoading: false,
-      searchTerm: term,
-      results: await getByUrl('https://swapi.dev/api/people/', term),
-    });
+  const handleSearch = async (term: string) => {
+    setSearchTerm(term);
   };
-
-  render() {
-    return (
-      <>
-        <ErrorBoundary>
-          <SearchSection
-            searchTerm={this.state.searchTerm}
-            onSearch={this.handleSearch}
-          />
-          <ResultsSection
-            isLoading={this.state.isLoading}
-            results={this.state.results}
-          />
-        </ErrorBoundary>
-      </>
-    );
-  }
+  return (
+    <>
+      <ErrorBoundary>
+        <SearchSection searchTerm={searchTerm} onSearch={handleSearch} />
+        <ResultsSection isLoading={loadingStatus} results={serverResponse} />
+      </ErrorBoundary>
+    </>
+  );
 }
 
 export default App;

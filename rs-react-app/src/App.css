@@ -1,10 +1,28 @@
 #root {
-  max-width: 1280px;
+  /* max-width: 1280px; */
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
-
+body {
+  background-color:aliceblue;
+}
+.result-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 15px;
+}
+.result-item {
+  min-width: 200px;
+  /* border-width: 2px; */
+  border: 2px solid rgb(229, 216, 199);
+  border-radius: 5px;
+}
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -35,6 +53,7 @@
 
 .card {
   padding: 2em;
+
 }
 
 .read-the-docs {
@@ -42,4 +61,18 @@
 }
 .input {
   width: 200px;
+}
+
+.button-search {
+  background-color: black;
+  color: rgb(229, 216, 199);
+  border-radius: 7px;
+  margin-left: 20px;
+  border-width: 2px;
+}
+.button-search:hover {
+  border-radius: 9px;
+  /* color: rgb(229, 216, 199); */
+  color: wheat;
+  border-color: #61dafbaa;
 }
